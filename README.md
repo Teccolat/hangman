@@ -1,3 +1,13 @@
+# How to play Hangman
+
+Hacker Hangman is based on the classic word game in which you must guess the secret word one letter at a time.
+Guess one letter at a time to reveal the secret word.
+
+Each incorrect guess increases your chance of loosing the game. You only get 10 incorrect guesses.
+Use your Keyboard to guess the letters. If you fail to guess the word it will be provided to you at the end of the game.
+You will have the option to play again once you have guessed the word or once you've had 10 incorrect guesses.
+The Game is build using React Please follow the instruction below to run the repo locally.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
