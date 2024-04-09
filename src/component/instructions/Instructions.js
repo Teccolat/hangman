@@ -1,7 +1,7 @@
 import React from 'react'
 
 // Display instruction when user toggle 'More info'
-function Instructions({ instructions, showInstructions }) {
+function Instructions({ instructions, showInstructions, closeInstructions }) {
 
     return (
         <div>
@@ -11,9 +11,12 @@ function Instructions({ instructions, showInstructions }) {
             </div>
 
             {/* The content of the instruction */}
-            <div className="show-instruction-popup" style={instructions ? {display:'flex'} : {}}>
-                <div >
-                    <h2>Instruction</h2>
+            <div className="show-instruction-popup" style={instructions ? {display:'inline'} : {}}>
+                <div className='show-instruction-popup-header'>
+                    <div className='show-instruction-title'>Instruction</div>
+                    <button className='closeInstructionsBtn' onClick={showInstructions}>&times;</button>
+                </div>
+                <div className='instruction-body'>
                     <p>Hacker Hangman is based on 
                     the classic word game in which you must guess the secret word one 
                     letter at a time.</p>

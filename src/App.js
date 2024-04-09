@@ -10,6 +10,7 @@ import Popup from './component/popup/Popup';
 import Notification from './component/notification/Notification';
 import { showNotification } from './helpers/helpers';
 
+// List of words used to feed the game
 const words = ['book', 'programming', 'calculation', 'strong'];
 let selectedWord = words[Math.floor(Math.random() * words.length)];
 
@@ -22,15 +23,15 @@ function App() {
 
   useEffect(() => {
     const handleKeydown = event => {
-      // Get the Key and the Key code from the event
+      // Get the Key and the Key code from pressing keyboard
       const { key, keyCode } = event;
-      // Get user input keyboard value
+      // Check for keyboard input value
       if (playable && keyCode >= 65 && keyCode <= 90) {
         const letter = key.toLowerCase();
-        // Check if user letter is in random selected word
+        // Check if letter is in random selected word
         if (selectedWord.includes(letter)) {
           if (!correctLetters.includes(letter)) {
-            // Add correct letter, if the letter is not in CorrectLetters.
+            // If the letter is not in CorrectLetters,add correct letter,
             setCorrectLetters(currentLetters => [...currentLetters, letter]);
           } else {
             // If the user enetered the right letter twice then pass the status of SetDispalyNotification to the timeout function (showNotification )
@@ -46,17 +47,17 @@ function App() {
         }
       }
     }
-    //Add event listener  Keydown and handle the event with handelKeyDown
+    //Add event listener on Keydown and handle the event with handelKeyDown function.
     window.addEventListener('keydown', handleKeydown);
    //Remove event listener- Only one event listener should be active
     return () => window.removeEventListener('keydown', handleKeydown);
   }, [correctLetters, wrongLetters, playable]);
 
-  //Function to restart the game.
+  //The function below allow the game to restart.
   function playAgain() {
     setPlayable(true);
 
-    // Empty Arrays
+    // Empty arrays
     setCorrectLetters([]);
     setWrongLetters([]);
 
@@ -64,9 +65,9 @@ function App() {
     selectedWord = words[random];
   }
 
-//When user request for for set of instruction.
+//The following method handle the event from clicking "More Info" and "X" button on instruction Modal.
   const showInstructions=()=>{
-    //sset the instruction set to the opposit state
+    //Set instructions status to opposit state 
     instructions?setInstructions(false):setInstructions(true);
  
   }
@@ -78,7 +79,10 @@ function App() {
         <Figure wrongLetters={wrongLetters} />
         <WrongLetters wrongLetters={wrongLetters} />
         <Word selectedWord={selectedWord} correctLetters={correctLetters} />
+        <div className='game-button'>
         <Instructions showInstructions={showInstructions} instructions={instructions}/>
+        <button className="replay"onClick={playAgain}>Restart</button>
+        </div>
       </div>
       <Popup correctLetters={correctLetters} wrongLetters={wrongLetters} selectedWord={selectedWord} setPlayable={setPlayable} playAgain={playAgain} />
       <Notification displayNotification={displayNotification} />
@@ -88,5 +92,6 @@ function App() {
 
 export default App;
 
-//Reference:
-//https://www.youtube.com/watch?v=jj0W8tYX_q8&ab_channel=TraversyMedia
+// Reference:
+// https://www.youtube.com/watch?v=jj0W8tYX_q8&ab_channel=TraversyMedia
+
